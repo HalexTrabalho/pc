@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Hardware - Como Funciona um PC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark theme base */
+            color: #f3f4f6;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        }
+
+        .card {
+            background-color: #1f2937;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #374151;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: #8b5cf6;
+        }
+
+        .component-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            transition: all 0.2s;
+            cursor: pointer;
+            background-color: #374151;
+            border: 1px solid #4b5563;
+        }
+
+        .quiz-option:hover:not(.disabled) {
+            background-color: #4b5563;
+        }
+
+        .quiz-option.selected {
+            background-color: #7C3AED; /* Roxo */
+            color: white;
+            border-color: #7C3AED;
+        }
+
+        .correct {
+            background-color: #065f46 !important; /* Verde escuro */
+            border-color: #10b981 !important;
+            color: #d1fae5 !important;
+        }
+
+        .incorrect {
+            background-color: #7f1d1d !important; /* Vermelho escuro */
+            border-color: #ef4444 !important;
+            color: #fee2e2 !important;
+        }
+        
+        .disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        header h1 {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="hero-bg text-white py-12 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Anatomia de um Computador</h1>
+            <p class="text-xl opacity-90 max-w-2xl mx-auto">Entenda a função de cada peça, da Placa-mãe ao SSD, em alguns minutos de leitura.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        
+        <!-- Intro Section -->
+        <section class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">O Que Faz seu PC Funcionar?</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto mb-8">
+                Muitas vezes culpamos o processador pela lentidão, mas o gargalo pode estar em outro lugar. Conheça os componentes essenciais.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Motherboard -->
+                <div class="card p-6 rounded-xl">
+                    <div class="text-indigo-400 component-icon"><i class="fas fa-chess-board"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Placa-Mãe (Motherboard)</h3>
+                    <p class="text-gray-400 text-sm">A espinha dorsal. Conecta todos os componentes, distribui energia e define a compatibilidade do sistema (DDR4/5, Socket, etc).</p>
+                </div>
+
+                <!-- CPU -->
+                <div class="card p-6 rounded-xl">
+                    <div class="text-blue-400 component-icon"><i class="fas fa-microchip"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Processador (CPU)</h3>
+                    <p class="text-gray-400 text-sm">O cérebro. Executa instruções de programas e jogos. Medido em Núcleos (multitarefa) e GHz (velocidade).</p>
+                </div>
+
+                <!-- GPU -->
+                <div class="card p-6 rounded-xl">
+                    <div class="text-green-400 component-icon"><i class="fas fa-tv"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Placa de Vídeo (GPU)</h3>
+                    <p class="text-gray-400 text-sm">Responsável pelo visual. Pode ser <strong>Integrada</strong> (básica) ou <strong>Dedicada</strong> (jogos e renderização pesada).</p>
+                </div>
+
+                <!-- RAM -->
+                <div class="card p-6 rounded-xl">
+                    <div class="text-yellow-400 component-icon"><i class="fas fa-memory"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Memória RAM</h3>
+                    <p class="text-gray-400 text-sm">Memória temporária e ultrarrápida. Se apaga ao desligar. Mais RAM = Mais programas abertos sem travar.</p>
+                </div>
+
+                <!-- Storage -->
+                <div class="card p-6 rounded-xl">
+                    <div class="text-pink-400 component-icon"><i class="fas fa-hdd"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Armazenamento (HD/SSD)</h3>
+                    <p class="text-gray-400 text-sm"><strong>HD:</strong> Lento, mecânico, barato. <br><strong>SSD:</strong> Rápido, chips flash, essencial para o sistema ligar rápido.</p>
+                </div>
+
+                <!-- PSU -->
+                <div class="card p-6 rounded-xl">
+                    <div class="text-red-400 component-icon"><i class="fas fa-plug"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Fonte (PSU)</h3>
+                    <p class="text-gray-400 text-sm">Converte energia da tomada. Uma fonte ruim pode queimar seu PC. Procure pelo selo <strong>80 Plus</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary Components Details -->
+        <section class="mb-16 bg-gray-800 rounded-2xl p-8">
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">Componentes Importantes & Legado</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold text-indigo-300 mb-2"><i class="fas fa-snowflake mr-2"></i>Refrigeração</h3>
+                    <p class="text-gray-400 text-sm mb-4">Eletrônicos geram calor. Coolers (ar) ou Water Coolers (líquido) evitam superaquecimento que causa lentidão ou danos.</p>
+                    
+                    <h3 class="text-lg font-bold text-indigo-300 mb-2"><i class="fas fa-box mr-2"></i>Gabinete</h3>
+                    <p class="text-gray-400 text-sm">Além da estética, influencia no fluxo de ar (airflow) e organização dos cabos.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-indigo-300 mb-2"><i class="fas fa-wifi mr-2"></i>Conectividade</h3>
+                    <p class="text-gray-400 text-sm mb-4">Placas de Rede (Wi-Fi/Ethernet) e Placas de Som (para audiófilos e produtores).</p>
+                    
+                    <h3 class="text-lg font-bold text-indigo-300 mb-2"><i class="fas fa-compact-disc mr-2"></i>Legado</h3>
+                    <p class="text-gray-400 text-sm">Drives de CD/DVD são raros hoje, usados apenas para acessar mídias físicas antigas ou sistemas específicos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz-section" class="bg-indigo-900 rounded-2xl p-8 shadow-2xl border border-indigo-700">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-white"><i class="fas fa-gamepad mr-2"></i>Desafio de Hardware</h2>
+                <p class="text-indigo-200 mt-2">Teste seus conhecimentos sobre as peças do computador.</p>
+                <div class="mt-4 text-xs bg-indigo-800 text-indigo-100 inline-block px-4 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fas fa-random mr-2"></i>Perguntas Aleatórias
+                </div>
+            </div>
+
+            <form id="quiz-form" class="space-y-6">
+                <div id="questions-container" class="space-y-6">
+                    <!-- Questions will be injected here by JS -->
+                </div>
+
+                <div class="text-center mt-8">
+                    <button type="button" id="btn-calculate" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transform transition hover:scale-105 shadow-lg text-lg w-full md:w-auto">
+                        Calcular Nota Final
+                    </button>
+                    <div id="result-display" class="hidden mt-6 p-6 bg-gray-900 rounded-lg animate-fade-in border border-gray-700">
+                        <h3 class="text-3xl font-bold mb-2" id="score-text"></h3>
+                        <p id="feedback-text" class="text-gray-300 text-lg"></p>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-950 text-gray-500 py-8 mt-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; Halex System&reg</p>
+        </div>
+    </footer>
+
+    <script>
+        // Banco de Dados de Perguntas sobre Hardware (25 Questões)
+        const questionBank = [
+            {
+                q: "Qual componente é considerado a 'espinha dorsal' do computador?",
+                options: ["Processador", "Placa de Vídeo", "Placa-Mãe", "Fonte"],
+                answer: 2
+            },
+            {
+                q: "O que acontece com os dados na memória RAM quando o computador é desligado?",
+                options: ["São salvos automaticamente", "São apagados", "Vão para a nuvem", "Ficam comprimidos"],
+                answer: 1
+            },
+            {
+                q: "Qual a principal vantagem de um SSD NVMe sobre um HD convencional?",
+                options: ["Preço mais baixo", "Maior capacidade de armazenamento", "Velocidade muito superior", "Não precisa de energia"],
+                answer: 2
+            },
+            {
+                q: "Qual a função da Fonte de Alimentação (PSU)?",
+                options: ["Gerar gráficos", "Resfriar o PC", "Converter energia da tomada para o PC", "Aumentar a internet"],
+                answer: 2
+            },
+            {
+                q: "O que significa 'GPU'?",
+                options: ["General Processing Unit", "Graphics Processing Unit", "Gaming Power Unity", "Global Power Usage"],
+                answer: 1
+            },
+            {
+                q: "Para que serve a pasta térmica aplicada sobre o processador?",
+                options: ["Colar o processador na placa-mãe", "Melhorar a transferência de calor para o cooler", "Deixar o processador mais rápido eletricamente", "Proteger contra vírus"],
+                answer: 1
+            },
+            {
+                q: "Uma placa de vídeo 'Integrada' utiliza qual memória para funcionar?",
+                options: ["Sua própria memória VRAM", "A memória RAM do sistema", "A memória do HD", "Não usa memória"],
+                answer: 1
+            },
+            {
+                q: "Qual o mínimo de memória RAM recomendado no vídeo para uso geral hoje em dia?",
+                options: ["2 GB", "4 GB", "8 GB", "64 GB"],
+                answer: 2
+            },
+            {
+                q: "O que o selo '80 Plus' em uma fonte indica?",
+                options: ["Que ela tem 80 Watts", "Eficiência energética", "Que ela dura 80 anos", "Que ela suporta 80 dispositivos"],
+                answer: 1
+            },
+            {
+                q: "Qual componente é responsável por executar as instruções e cálculos lógicos?",
+                options: ["SSD", "Placa-Mãe", "Processador (CPU)", "Cooler"],
+                answer: 2
+            },
+            {
+                q: "Por que não é recomendado usar um HD para instalar o Sistema Operacional hoje em dia?",
+                options: ["Ele é muito caro", "Ele é muito lento comparado ao SSD", "Ele não é compatível com Windows", "Ele esquenta demais"],
+                answer: 1
+            },
+            {
+                q: "O que é um 'Gargalo' (Bottleneck) no computador?",
+                options: ["Quando uma peça limita o desempenho das outras", "A entrada de ar do gabinete", "O cabo de força", "Um tipo de vírus"],
+                answer: 0
+            },
+            {
+                q: "Para quem é recomendada uma Placa de Captura?",
+                options: ["Para quem usa Excel", "Para Streamers e Criadores de Conteúdo", "Para quem ouve música", "Para aumentar o FPS"],
+                answer: 1
+            },
+            {
+                q: "Qual destes NÃO é um formato de SSD mencionado?",
+                options: ["M.2 NVMe", "SATA 2.5", "M.2 SATA", "Disquete"],
+                answer: 3
+            },
+            {
+                q: "O que define a frequência de um processador?",
+                options: ["Gigabytes (GB)", "Gigahertz (GHz)", "Watts (W)", "Volts (V)"],
+                answer: 1
+            },
+            {
+                q: "Qual a função do Cooler?",
+                options: ["Deixar o PC mais bonito", "Resfriar os componentes", "Gerar energia eólica", "Aumentar o volume do som"],
+                answer: 1
+            },
+            {
+                q: "Uma placa de som dedicada é essencial para todos os usuários?",
+                options: ["Sim, sem ela não sai som", "Não, a maioria das placas-mãe já tem som integrado", "Sim, senão o PC trava", "Não, ela só serve para microfones"],
+                answer: 1
+            },
+            {
+                q: "Qual a diferença física principal entre HD e SSD?",
+                options: ["O HD tem partes móveis (disco), o SSD usa chips", "O SSD é maior que o HD", "O HD é feito de plástico", "Não há diferença"],
+                answer: 0
+            },
+            {
+                q: "O que é 'Overclock'?",
+                options: ["Um relógio para o PC", "Forçar um componente a trabalhar acima da velocidade padrão", "Desligar o PC rapidamente", "Limpar a memória RAM"],
+                answer: 1
+            },
+            {
+                q: "Para edição de vídeo pesada, qual componente é crucial além do processador?",
+                options: ["Placa de Rede", "Placa de Vídeo Dedicada", "Leitor de CD", "Teclado RGB"],
+                answer: 1
+            },
+            {
+                q: "O gabinete influencia em quê além da estética?",
+                options: ["Na velocidade da internet", "No fluxo de ar e refrigeração", "Na qualidade do som", "Na resolução do monitor"],
+                answer: 1
+            },
+            {
+                q: "Se seu PC não tem Wi-Fi na placa-mãe, o que você precisa?",
+                options: ["Trocar de processador", "Uma Placa de Rede Wireless ou adaptador USB", "Baixar Wi-Fi da internet", "Usar Bluetooth"],
+                answer: 1
+            },
+            {
+                q: "Quantos GB de RAM o vídeo sugere para jogos ou edição leve?",
+                options: ["4 GB", "8 GB", "16 GB", "128 GB"],
+                answer: 2
+            },
+            {
+                q: "O que é 'VRAM'?",
+                options: ["Memória Virtual do Windows", "Memória de Vídeo da Placa Gráfica", "Vírus de RAM", "Velocidade da RAM"],
+                answer: 1
+            },
+            {
+                q: "Fontes genéricas (ruins) podem causar:",
+                options: ["Melhora no desempenho", "Reinícios, travamentos e queima de peças", "Economia de energia", "Cores mais vivas no monitor"],
+                answer: 1
+            }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        let selectedQuestions = [];
+
+        function initQuiz() {
+            // Embaralha e seleciona 10 questões novas a cada refresh
+            const shuffledBank = shuffleArray([...questionBank]);
+            selectedQuestions = shuffledBank.slice(0, 10);
+            
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+
+            selectedQuestions.forEach((q, index) => {
+                const questionHTML = `
+                    <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-indigo-500 transition-colors" data-question-index="${index}">
+                        <p class="text-lg font-semibold mb-4 text-indigo-200"><span class="text-gray-500 mr-2">#${index + 1}</span> ${q.q}</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${q.options.map((opt, optIndex) => `
+                                <div class="quiz-option p-4 rounded-lg text-gray-300 font-medium" 
+                                     onclick="selectOption(${index}, ${optIndex}, this)">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <input type="hidden" name="q${index}" id="input-q${index}" value="">
+                    </div>
+                `;
+                container.innerHTML += questionHTML;
+            });
+        }
+
+        window.selectOption = function(qIndex, optIndex, element) {
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.quiz-option');
+            
+            if(options[0].classList.contains('disabled')) return;
+
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById(`input-q${qIndex}`).value = optIndex;
+        }
+
+        document.getElementById('btn-calculate').addEventListener('click', function() {
+            const btn = this;
+            
+            // Trava o botão
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            btn.innerText = 'Calculando Resultados...';
+
+            let score = 0;
+            const container = document.getElementById('questions-container');
+            const resultDisplay = document.getElementById('result-display');
+            const scoreText = document.getElementById('score-text');
+            const feedbackText = document.getElementById('feedback-text');
+
+            selectedQuestions.forEach((q, index) => {
+                const input = document.getElementById(`input-q${index}`);
+                const userChoice = input.value === "" ? -1 : parseInt(input.value);
+                const questionDiv = container.children[index];
+                const optionsDivs = questionDiv.querySelectorAll('.quiz-option');
+
+                optionsDivs.forEach((optDiv, optIndex) => {
+                    optDiv.classList.add('disabled');
+                    
+                    if (optIndex === q.answer) {
+                        optDiv.classList.add('correct');
+                        optDiv.innerHTML += ' <i class="fas fa-check float-right text-green-200 mt-1"></i>';
+                    } else if (optIndex === userChoice) {
+                        optDiv.classList.add('incorrect');
+                        optDiv.innerHTML += ' <i class="fas fa-times float-right text-red-200 mt-1"></i>';
+                    }
+                });
+
+                if (userChoice === q.answer) {
+                    score++;
+                }
+            });
+
+            // Exibir Resultado
+            resultDisplay.classList.remove('hidden');
+            scoreText.innerText = `Nota Final: ${score}/10`;
+            
+            if(score === 10) {
+                feedbackText.innerText = "Excelente! Você domina o hardware!";
+                scoreText.classList.add('text-green-400');
+            } else if (score >= 7) {
+                feedbackText.innerText = "Muito bom! Tem bons conhecimentos técnicos.";
+                scoreText.classList.add('text-indigo-400');
+            } else {
+                feedbackText.innerText = "Vale a pena revisar o conteúdo para aprender mais.";
+                scoreText.classList.add('text-yellow-400');
+            }
+
+            btn.innerText = 'Prova Finalizada';
+        });
+
+        initQuiz();
+
+    </script>
+</body>
+</html>
